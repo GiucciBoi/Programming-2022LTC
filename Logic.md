@@ -67,3 +67,10 @@ led --> terminalEnd([End])
 ```
 
 ```mermaid
+flowchart TD
+terminalStart([Start])
+terminalEnd([End])
+
+
+
+```
