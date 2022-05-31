@@ -1,12 +1,3 @@
-// SD Card Module
-#include <SPI.h>
-#include <SD.h>
-
-// Real Time Clock (RTC)
-#include "RTClib.h"
-RTC_Millis rtc;     // Software Real Time Clock (RTC)
-DateTime rightNow;  // used to store the current time.
-
 Serial.begin(9600);           // Open serial communications and wait for port to open:
   while (!Serial) {
     delay(1);                   // wait for serial port to connect. Needed for native USB port only
