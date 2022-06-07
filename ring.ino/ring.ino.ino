@@ -4,7 +4,15 @@
 #include "Adafruit_NECremote.h"
 #define IRpin         4
 Adafruit_NECremote remote(IRpin);
+#include <L298N.h>
 
+// Pin definition
+const unsigned int IN1 = 5;
+const unsigned int IN2 = 6;
+
+
+// Create one motor instance
+L298N motor(IN1, IN2);
 // Real Time Clock (RTC)
 #include "RTClib.h"
 RTC_Millis rtc;     // Software Real Time Clock (RTC)
@@ -14,17 +22,17 @@ void setup() {
   while (!Serial) {
     delay(1);                   // wait for serial port to connect. Needed for native USB port only
   }
-//
-//  // SD Card initialisation
-//  Serial.print("Initializing SD card...");
-//  if (!SD.begin(10)) {
-//    Serial.println("initialization failed!");
-//    while (1);
-//  }
-//  // Real Time Clock (RTC)
-//  rtc.begin(DateTime(F(__DATE__), F(__TIME__)));
-//  Serial.println("initialization done.");
-//  logEvent("System Initialisation...");
+
+  // SD Card initialisation
+  Serial.print("Initializing SD card...");
+  if (!SD.begin(10)) {
+    Serial.println("initialization failed!");
+    while (1);
+  }
+  // Real Time Clock (RTC)
+  rtc.begin(DateTime(F(__DATE__), F(__TIME__)));
+  Serial.println("initialization done.");
+  logEvent("System Initialisation...");
 }
 
 void logEvent(String dataToLog) {
@@ -69,7 +77,7 @@ void logEvent(String dataToLog) {
   Serial.print(rightNow.hour(), DEC);
   Serial.print(",");
   Serial.print(rightNow.minute(), DEC);
-  Serial.print(",");
+  Serial.print(",");const unsigned int EN = 9;
   Serial.print(rightNow.second(), DEC);
   Serial.print(",");
   Serial.println(dataToLog);
@@ -90,18 +98,31 @@ void remoteDecode() {
       // Top keys
       case 70:
         Serial.println("UP");
+        motor.forward();
+       if (digitalWrite(LedGreen HIGH);
+        else;
+        digitalWrite(LedGreen LOW);
+        Serial.printIn"FORWARD"
         break;
       case 21:
         Serial.println("DOWN");
+        motor backward(); 
         break;
       case 68:
+        myservo.write(180);
+        delay(200);
+        myservo.write(90):
         Serial.println("LEFT");
-
         break;
       case 67:
+      myservo.write(0);
+      delay(200);
+      myservo.write(90):
         Serial.println("RIGHT");
         break;
       case 64:
+      motor.stop();
+      Serial.printIn("STOP")
         Serial.println("OK");
         break;
       // Numbers
